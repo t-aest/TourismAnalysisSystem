@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>旅游大数据平台</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <style>
+        table,tbody,tfoot,thead,tr,th,td {
+            margin:0;
+            padding:0;
+            outline:0;
+            font-size:100%;
+            vertical-align:baseline;
+            background:transparent;
+            border-collapse:collapse;
+            border-spacing:0;
+            border:0px;
+            cursor: pointer;
+        }
+        .tablebox {
+            /*background-color: #2C58A6;*/
+            width:100%;
+            height:200px;
+            overflow:hidden;
+            margin:0px auto;
+        }
+        .tablebox table {
+            width:100%;
+        }
+        .tablebox table th,.tablebox table td {
+            color:#87CEFA;
+            font-size:12px;
+            text-align:center;
+            line-height:36px;
+        }
+        .tablebox table th {
+            color:#00BFFF;
+            background-color:#2C58A6;
+        }
+        .tablebox table td img {
+            display:inline-block;
+            vertical-align:middle;
+        }
+        .tablebox table tbody tr:nth-child(even) {
+            /*background-color:#2C58A6;*/
+        }
+        .tablebox.table_md table td,.tablebox.table_md table th {
+            line-height:40px;
+        }
+
+
+        .t_btn {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .t_btn li {
+            display: inline-block;
+            margin: 0 0px 15px 15px;
+            cursor: pointer;
+        }
+
+        .t_btn button,
+        .t_a {
+            display: inline-block;
+            padding: 10px 5px;
+            width: 80px;
+            border-style: solid;
+            border-width: 0;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            line-height: normal;
+            margin: 0 0 0.5em 0;
+            position: relative;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            font-size: 1em;
+            background-color: #2C58A6;
+            border-color: #0263ff;
+            color: white;
+            box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset !important;
+            margin-right: 0.5em;
+            border-radius: 4px;
+        }
+
+        .t_height {
+            line-height: 80px;
+            position: absolute;
+            right: 28px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <div class="bg_header">
+            <div class="header_nav fl t_title">
+                旅游大数据服务平台
+            </div> 
+        </div>
+        <div class="header_nav fl">
+        </div>
+        <div class="header_myself fr t_height">
+            <a class="t_a" href="/main">返回 &nbsp;</a>
+        </div>
+    </div>
+    <!--main-->
+    <div class="data_content">
+        <div class="data_main">
+            <div class="main_left fl">
+                <div class="left_1">
+                    <ul class="t_btn">
+                        <li>
+                            <button class="t_btn0">河南热门常驻地</button>
+                        </li>
+                        <li>
+                            <button class="t_btn4">河南热门城市</button>
+                        </li>
+                        <li>
+                            <button class="t_btn5">河南各市流量</button>
+                        </li>
+                        <li>
+                            <button class="t_btn15">河南各市收入</button>
+                        </li>
+                        <li>
+                            <button class="t_btn13">河南省地图</button>
+                        </li>
+                        <li>
+                            <button class="t_btn2">河南省飞机场</button>
+                        </li>
+                        <li>
+                            <button class="t_btn16">河南省热门景区</button>
+                        </li>
+                        <!--<li>-->
+                            <!--<button class="t_btn14">GPS</button>-->
+                        <!--</li>-->
+                        <li>
+                            <button class="t_btn9">世界地图</button>
+                        </li>
+                        <li>
+                            <button class="t_btn3">各省旅游企业收入</button>
+                        </li>
+                        <li>
+                            <button class="t_btn1">城市旅游企业收入</button>
+                        </li>
+                        <li>
+                            <button class="t_btn6">省旅游收入分布</button>
+                        </li>
+                        <li>
+                            <button class="t_btn7">市旅游收入分布</button>
+                        </li>
+                        <li>
+                            <button class="t_btn8">酒店分布</button>
+                        </li>
+
+                        <li>
+                            <button class="t_btn10">入境方式</button>
+                        </li>
+                        <li>
+                            <button class="t_btn11">河南省收入</button>
+                        </li>
+                        <li>
+                            <button class="t_btn12">酒店词云</button>
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle btn-lg"
+                                        data-toggle="dropdown">
+                                    景区词云
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#" class="t_btn17">龙门石窟</a></li>
+                                    <li><a href="#" class="t_btn18">白马寺</a></li>
+                                    <li><a href="#" class="t_btn19">老君山</a></li>
+                                    <li><a href="#" class="t_btn20">龙潭大峡谷</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <button class="t_btn21">旅游疫情</button>
+                        </li>
+                        <li>
+                            <button class="t_btn17" style="VISIBILITY: hidden;">龙门石窟</button>
+                        </li>
+                        <li>
+                            <button class="t_btn18" style="VISIBILITY: hidden;">白马寺</button>
+                        </li>
+                        <li>
+                            <button class="t_btn19" style="VISIBILITY: hidden;">老君山</button>
+                        </li>
+                        <li>
+                            <button class="t_btn20" style="VISIBILITY: hidden;">龙潭大峡谷</button>
+                        </li>
+                        <li>
+
+                    </ul>
+                    <div class="tablebox" style="border: 1px solid ;border-radius: 10px;">
+                        <table id="tableId" border="0" cellspacing="0" cellpadding="0">
+                            <thead>
+                            <tr>
+                                <th>评论分类</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="comment,iterStat : ${comments}">
+                                <td id="review" th:text="${#strings.abbreviate(comment.getReview(),20)}" th:title="${comment.getReview()}"></td>
+                                <td th:text="${comment.getPredict()}"></td>
+                            </tr>
+
+                            </tbody></table>
+                    </div>
+                </div>
+                <div class="left_2" style="display:none">
+                    <div class="main_title">
+                         河南省地图
+                    </div>
+                </div>
+            </div>
+            <div class="main_center fl">
+                <div class="center_text t_cos0">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div> 
+                    <div class="main_title">
+                         河南省热门常驻地
+                    </div>
+                    <div id="chart_map" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos2" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        河南省飞机场
+                    </div>
+                    <div id="chart_0" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos3" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        各省旅游企业收入
+                    </div>
+                    <div id="chart_4" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos4" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        河南省流量统计
+                    </div>
+                    <div id="chart_1" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos15" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        河南省收入统计
+                    </div>
+                    <div id="chart_15" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos6" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        河南热门城市
+                    </div>
+                    <div id="chart_6" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos1"  style="display:none" >
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        主要城市旅游企业收入
+                    </div>
+                    <div id="chart_2" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos5" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        省旅游收入分布
+                    </div>
+                    <div id="chart_3" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos7" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        主要城市旅游收入分布
+                    </div>
+                    <div id="chart_7" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos8" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        全国星级酒店分布
+                    </div>
+                    <div id="chart_8" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos9" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                         客源国
+                    </div>
+                    <div id="chart_9" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos10" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        入境方式
+                    </div>
+                    <div id="chart_10" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos11" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        河南省收入
+                    </div>
+                    <div id="chart_11" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos12" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                       评论词云
+                    </div>
+                    <div id="chart_12" class="chart" style="width:100%;height:778px;"></div>
+                </div>
+                <div class="center_text t_cos13" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        河南省地图
+                    </div>
+                    <div id="chart_13" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+                </div>
+                <div class="center_text t_cos14" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i> 
+                        <i class="l_t_line"></i> 
+                    </div> 
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i> 
+                        <i class="r_t_line"></i> 
+                    </div> 
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i> 
+                        <i class="b_l_line"></i> 
+                    </div> 
+                        <!--右下边框-->
+                        <div class="t_line_box">
+                        <i class="r_b_line"></i> 
+                        <i class="b_r_line"></i> 
+                    </div>
+                    <div class="main_title">
+                        GPS
+                    </div>
+                    <div id="chart_14" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+                </div>
+                <div class="center_text t_cos16" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        河南热门景区
+                    </div>
+                    <div id="chart_16" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+                </div>
+                <div class="center_text t_cos17" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        龙门石窟词云
+                    </div>
+                    <div id="chart_17" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+                </div>
+                <div class="center_text t_cos18" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        白马寺词云
+                    </div>
+                    <div id="chart_18" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+                </div>
+                <div class="center_text t_cos19" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        老君山词云
+                    </div>
+                    <div id="chart_19" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+                </div>
+                <div class="center_text t_cos20" style="display:none">
+                    <!--左上边框-->
+                    <div class="t_line_box">
+                        <i class="t_l_line"></i>
+                        <i class="l_t_line"></i>
+                    </div>
+                    <!--右上边框-->
+                    <div class="t_line_box">
+                        <i class="t_r_line"></i>
+                        <i class="r_t_line"></i>
+                    </div>
+                    <!--左下边框-->
+                    <div class="t_line_box">
+                        <i class="l_b_line"></i>
+                        <i class="b_l_line"></i>
+                    </div>
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                        <i class="r_b_line"></i>
+                        <i class="b_r_line"></i>
+                    </div>
+                    <div class="main_title">
+                        龙潭大峡谷词云
+                    </div>
+                    <div id="chart_20" class="chart" style="width:100%;height:778px; cursor: pointer;"></div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+    <script th:src="@{../js/jquery-2.2.1.min.js}" src="../js/jquery-2.2.1.min.js"></script>
+    <script th:src="@{../js/bootstrap.min.js}" src="../js/bootstrap.min.js"></script>
+    <script th:src="@{../js/common.js}" src="../js/common.js"></script>
+    <!--<script src="http://api.map.baidu.com/api?v=2.0&ak=dApOtvB5E3x6byHpUGHbRF1fxctCBdjw"></script>-->
+    <script th:src="@{../js/echarts.min.js}" src="../js/echarts.min.js"></script>
+    <script th:src="@{../js/dataTool.js}" src="../js/dataTool.js"></script>
+    <script th:src="@{../js/base.js}"></script>
+    <script th:src="@{../js/china.js}" src="../js/china.js"></script>
+    <!--<script th:src="@{../js/hunan.js}" src="../js/hunan.js"></script>-->
+    <script th:src="@{../js/henan.js}" src="../js/hunan.js"></script>
+    <script th:src="@{../js/bmap.js}" src="../js/bmap.js"></script>
+    <script th:src="@{/js/loading.js}"></script>
+    <script th:src="@{../js/echarts-all.js}" src="../js/echarts-all.js"></script>
+    <script th:src="@{../js/echarts-wordcloud.min.js}" src="../js/echarts-all.js"></script>
+</html>

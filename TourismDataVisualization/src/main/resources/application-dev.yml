@@ -1,0 +1,51 @@
+spring:
+  mail:
+    username: 876239615@qq.com
+    password: eaixufaexuxabcbc
+    host: smtp.qq.com
+    #需要开启ssl安全连接
+    properties.smtp.ssl.enble: true
+  datasource:
+    #引入Druid数据源
+    username: root
+    password: 980518
+    #mysql8版本以上的驱动包，需要指定以下时区
+    url: jdbc:mysql://pra:3306/test_rdd?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    #mysql8版本以上指定新的驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #如果不使用默认的数据源 （com.zaxxer.hikari.HikariDataSource）
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  thymeleaf:
+    cache: false
+# 日志配置
+logging:
+  level:
+    com.taest: debug
+#    org.springframework: WARN
+#    org.spring.springboot.dao: debug
+#
+  ## MyBatis
+  #mybatis:
+  #  # 搜索指定包别名
+  #  typeAliasesPackage: team.lab.course.domain
+  type-aliases-package: com.taest.tourismdatavisualization.system.domain
+  # 加载全局的配置文件
+  config-location: classpath:mapper/mybatis-config.xml
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  ##图片上传相关配置
+  #file:
+  #静态资源对外映射的路径
+  staticAccessPathPattern: /static/upload/img/**
+  #文件上传目录
+  uploadFolder: /home/upload/
+  #静态资源对外暴露的访问路径
+  staticAccessPath: /static/upload/img/
+server:
+  port: 8096
+
